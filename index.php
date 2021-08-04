@@ -43,8 +43,8 @@
                             echo '<td>'. $row['nome'] . '</td>';
                             echo '<td>'. $row['telefone'] . '</td>';
                             echo '<td>'. $row['email'] . '</td>';
-                            echo '<td>'. $row['foto'] . '</td>';
-                            //echo '<td>'. '<img src=""alt="Mountain" width="100" height="100" > </td>';
+                            echo '<td>'. '<img src="./assets/img/'. $row['foto'] .'" alt="Mountain" width="100" height="100" > </td>';
+                           
                             echo '<td width=250>';
                             echo '<a class="btn btn-primary" href="read.php?id='.$row['id'].'">Info</a>';
                             echo ' ';
@@ -53,7 +53,11 @@
                             echo '<a class="btn btn-danger" href="delete.php?id='.$row['id'].'">Excluir</a>';
                             echo '</td>';
                             echo '</tr>';
+
+                           //$tadeu ='<td>'. '<img src="./assets/img/'. $row['foto'] .'" alt="Mountain" width="100" height="100" > </td>';
+                            
                         }
+                       //var_dump($tadeu);exit();
                         Banco::desconectar();
                         ?>
                     </tbody>
