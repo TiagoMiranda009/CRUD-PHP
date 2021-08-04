@@ -54,10 +54,10 @@
                             echo '</td>';
                             echo '</tr>';
 
-                           //$tadeu ='<td>'. '<img src="./assets/img/'. $row['foto'] .'" alt="Mountain" width="100" height="100" > </td>';
+                           //$tiago ='<td>'. '<img src="./assets/img/'. $row['foto'] .'" alt="Mountain" width="100" height="100" > </td>';
                             
                         }
-                       //var_dump($tadeu);exit();
+                       //var_dump($tiago);exit();
                         Banco::desconectar();
                         ?>
                     </tbody>
