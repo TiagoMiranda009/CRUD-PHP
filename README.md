@@ -25,4 +25,4 @@ $dbSenha 'senhaDoUsuario'
 
 PS: Estou ciente do problema de inserir a imagem do BD.
 
-![alt text](![alt text](https://github.com/TiagoMiranda009/CRUD-PHP/screen-shots/ddddd.JPG)
+![alt text](![alt text](https://github.com/TiagoMiranda009/CRUD-PHP/blob/master/screen-shots/ddddd.JPG)
