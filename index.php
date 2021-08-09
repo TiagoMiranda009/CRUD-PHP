@@ -20,10 +20,13 @@
                 <p>
                     <a href="create.php" class="btn btn-success">Adicionar</a>
                 </p>
+                <p>
+                    <a href="read.php" class="btn btn-danger">Info</a>
+                </p>
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">Id</th>
+                            <th scope="col">Data</th>
                             <th scope="col">Nome</th>
                             <th scope="col">Telefone</th>
                             <th scope="col">Email</th>
@@ -39,14 +42,14 @@
                         foreach($pdo->query($sql)as $row)
                         {
                             echo '<tr>';
-			                      echo '<th scope="row">'. $row['id'] . '</th>';
+			                echo '<th scope="row">'. $row['data_cadastro'] . '</th>';
                             echo '<td>'. $row['nome'] . '</td>';
                             echo '<td>'. $row['telefone'] . '</td>';
                             echo '<td>'. $row['email'] . '</td>';
                             echo '<td>'. '<img src="./assets/img/'. $row['foto'] .'" alt="Mountain" width="100" height="100" > </td>';
                            
                             echo '<td width=250>';
-                            echo '<a class="btn btn-primary" href="read.php?id='.$row['id'].'">Info</a>';
+                           // echo '<a class="btn btn-primary" href="read.php?id='.$row['id'].'">Info</a>';
                             echo ' ';
                             echo '<a class="btn btn-warning" href="update.php?id='.$row['id'].'">Atualizar</a>';
                             echo ' ';

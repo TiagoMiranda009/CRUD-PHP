@@ -11,6 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $telefoneErro = null;
     $emailErro = null;
     $fotoErro = null;
+    $data_cadastro = null; 
+    
+    
 
     if (!empty($_POST)) {
         $validacao = True;
@@ -42,21 +45,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
 
+        if (!empty($_POST['data_cadastro'])) {
+            $data_cadastro = $_POST['data_cadastro'];
+        } else {
+            $data_cadastroErro = 'Por favor digite a Data!';
+            $validacao = False;
+        } 
+
+
         if (!empty($_POST['foto'])) {
             $foto = $_POST['foto'];
         } else {
             $fotoErro = 'Por favor insira a foto!';
             $validacao = true;
         }
+
+       /*$createdDate = new DateTime();
+       $date = $createdDate->format('d-m-y');*/
+
+
     }
 
 //Inserindo no Banco:
     if ($validacao) {
         $pdo = Banco::conectar();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO usuarios (nome, telefone, email, foto) VALUES(?,?,?,?)";
+        $sql = "INSERT INTO usuarios (nome, telefone, email, foto, data_cadastro) VALUES(?,?,?,?,?)";
         $q = $pdo->prepare($sql);
-        $q->execute(array($nome, $telefone, $email, $foto));
+        $q->execute(array($nome, $telefone, $email, $foto, $data_cadastro));
         Banco::desconectar();
         header("Location: index.php");
     }
@@ -113,6 +129,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                    value="<?php echo !empty($email) ? $email : ''; ?>">
                             <?php if (!empty($emailErro)): ?>
                                 <span class="text-danger"><?php echo $emailErro; ?></span>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="control-group <?php echo !empty($data_cadastroErro) ? 'error ' : ''; ?>">
+                        <label class="control-label">Data</label>
+                        <div class="controls">
+                            <input size="50" class="form-control" name="data_cadastro" type="text" placeholder="Data"
+                                   value="<?php echo !empty($telefone) ? $data_cadastro : ''; ?>">
+                            <?php if (!empty($data_cadastroErro)): ?>
+                                <span class="text-danger"><?php echo $data_cadastroErro; ?></span>
                             <?php endif; ?>
                         </div>
                     </div>

@@ -1,93 +1,73 @@
 <?php
-require 'banco.php';
-$id = null;
-if (!empty($_GET['id'])) {
-    $id = $_REQUEST['id'];
-}
+session_start();
+$servidor = "localhost";
+$usuario = "root";
+$senha = "";
+$dbname = "db_crud";
 
-if (null == $id) {
-    header("Location: index.php");
-} else {
-    $pdo = Banco::conectar();
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "SELECT * FROM usuarios where id = ?";
-    $q = $pdo->prepare($sql);
-    $q->execute(array($id));
-    $data = $q->fetch(PDO::FETCH_ASSOC);
-    Banco::desconectar();
+//Criar a conexao
+$conn = mysqli_connect($servidor, $usuario, $senha, $dbname);
+$x = 0;
+$y = 0;
+$z = 0;
+$a = 0;
+$b = 0;
+$c = 0;
+
+//percorre o banco
+$result_niveis_ava = "SELECT * FROM usuarios ";
+$resultado_niveis_ava = mysqli_query($conn, $result_niveis_ava);
+while($row_niveis_ava = mysqli_fetch_assoc($resultado_niveis_ava)){
+    if($row_niveis_ava['data_cadastro'] == "01/08/2021"){
+        $x++;
+    } else  if($row_niveis_ava['data_cadastro'] == "02/08/2021"){
+        $y++;
+    } else if($row_niveis_ava['data_cadastro'] == "03/08/2021"){
+        $z++;
+    }
+    else if($row_niveis_ava['data_cadastro'] == "04/08/2021"){
+        $a++;
+    }
+    else if($row_niveis_ava['data_cadastro'] == "05/08/2021"){
+        $b++;
+    }
+    if($row_niveis_ava['data_cadastro'] == "06/08/2021"){
+        $c++;
+    }
 }
 ?>
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
-<!DOCTYPE html>
-<html lang="pt-br">
+      function drawChart() {
 
-<head>
-    <meta charset="utf-8">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <title>Informações do Contato</title>
-</head>
+        var data = google.visualization.arrayToDataTable([
+          ['DATA', 'QUANTIDADE'],
+          ['01/08/2021',  <?=$x?>], //copia $x
+          ['02/08/2021',  <?=$y?>], //copia $y
+          ['03/08/2021',  <?=$z?>], //copia $z
+          ['04/08/2021',  <?=$a?>],
+          ['05/08/2021',  <?=$b?>],
+          ['06/08/2021',  <?=$c?>]
+          
+        ]);
+          //titulo do gráfico
+        var options = {
+          title: 'Cadastros'
+        };
 
-<body>
-<div class="container">
-    <div class="span10 offset1">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="well">Informações do Contato</h3>
-            </div>
-            <div class="container">
-                <div class="form-horizontal">
-                    <div class="control-group">
-                        <label class="control-label">Nome</label>
-                        <div class="controls form-control">
-                            <label class="carousel-inner">
-                                <?php echo $data['nome']; ?>
-                            </label>
-                        </div>
-                    </div>
+        var chart = new google.visualization.LineChart(document.getElementById('piechart'));
 
-                    <div class="control-group">
-                        <label class="control-label">Foto</label>
-                        <div class="controls form-control disabled">
-                            <label class="carousel-inner">
-                                <?php echo $data->foto; ?>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label">Telefone</label>
-                        <div class="controls form-control disabled">
-                            <label class="carousel-inner">
-                                <?php echo $data['telefone']; ?>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label">Email</label>
-                        <div class="controls form-control disabled">
-                            <label class="carousel-inner">
-                                <?php echo $data['email']; ?>
-                            </label>
-                        </div>
-                    </div>
-                    <br/>
-                    <div class="form-actions">
-                        <a href="index.php" type="btn" class="btn btn-default">Voltar</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="assets/js/bootstrap.min.js"></script>
-</body>
-
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+  </body>
 </html>
+
