@@ -1,6 +1,12 @@
-# Projeto CRUD em PHP - Bootstrap, PDO & MySQL
+# Projeto CRUD em PHP - Bootstrap, PDO & MySQLi
 
 Desenvolvimento de um simples projeto CRUD para uma entrevista de trabalho, utilizando o acesso a banco de dados com o MySQL e linguagem PHP.
+
+ADENDO 1.
+As imagens por hora, são passadas manualmente para pasta de imagens dentro do projeto.
+
+Adendo2.
+Existem 2 bibliotecas de conexão, PDO usado em todo projeto e o MSQLi, que foi usada para a pegar dados do GoogleCharts.
 
 ## Assuntos Abordados no Desenvolvimento do Projeto:
 
