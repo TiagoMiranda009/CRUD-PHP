@@ -34,4 +34,3 @@ PS: Estou ciente do problema de inserir a imagem do BD.
 ![alt text](![alt text](https://github.com/TiagoMiranda009/CRUD-PHP/blob/master/screen-shots/cap01.JPG)
 ![alt text](![alt text](https://github.com/TiagoMiranda009/CRUD-PHP/blob/master/screen-shots/cap02.JPG)
 ![alt text](![alt text](https://github.com/TiagoMiranda009/CRUD-PHP/blob/master/screen-shots/cap03.JPG)
-![alt text](![alt text](https://github.com/TiagoMiranda009/CRUD-PHP/blob/master/screen-shots/cap04.JPG)
